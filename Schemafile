@@ -7,6 +7,15 @@ create_table "announcements", id: :serial, force: :cascade do |t|
   t.datetime "updated_at", null: false
 end
 
+create_table "performances", id: :serial, force: :cascade do |t|
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.datetime "start_on", null: false
+  t.integer "value", null: false
+  t.text "content", null: false
+  t.integer "target_id", null: false
+end
+
 create_table "targets", id: :serial, force: :cascade do |t|
   t.datetime "start_on", null: false
   t.integer "value", null: false

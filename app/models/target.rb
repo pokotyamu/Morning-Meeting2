@@ -12,4 +12,5 @@
 
 class Target < ApplicationRecord
   belongs_to :team
+  has_many :performances
 end
