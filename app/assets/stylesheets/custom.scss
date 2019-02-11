@@ -1,0 +1,58 @@
+// variables
+
+$color-ffgreen: #6ea250;
+
+// variables
+// global
+
+h1,h2,h3 {
+  font-weight: 700;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+.btn {
+  border-radius: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// global
+// header
+
+header {
+  background-color: $color-ffgreen;
+  padding: 12px;
+  h1 {
+    color: #ffffff;
+    margin-right: auto;
+  }
+  .btn-outline-light:hover {
+    color: $color-ffgreen;
+  }
+}
+
+// header
+// teamlist
+
+.teamlist-item {
+  border: 1px solid;
+  border-bottom: 0px;
+  padding: 12px;
+  display: flex;
+  &:last-child {
+    border-bottom: 1px solid;
+  }
+  h3 {
+    margin-right: auto;
+  }
+}
+
+// teamlist
