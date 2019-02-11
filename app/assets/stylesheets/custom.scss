@@ -1,4 +1,15 @@
-h1 {
-  font-size: 2rem;
-  color: red;
+header {
+  background-color: #6ea250;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-right: auto;
+  }
+  .btn-outline-light:hover {
+    color: #6ea250;
+  }
 }
