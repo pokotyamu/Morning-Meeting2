@@ -1,5 +1,13 @@
 <h1>チーム一覧</h1>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <div class="container">
+      <%= value %>
+    </div>
+  </div>
+<% end %>
+
 <table>
   <tr>
     <th>順番</th>
@@ -26,3 +34,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= link_to 'チーム追加', new_team_path  %>
