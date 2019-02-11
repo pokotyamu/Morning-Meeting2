@@ -13,4 +13,8 @@
 
 class Performance < ApplicationRecord
   belongs_to :target
+
+  def formatted_week
+    "#{start_on.strftime("%m/%d")} から #{start_on.end_of_week.strftime("%m/%d")}"
+  end
 end
