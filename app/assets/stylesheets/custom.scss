@@ -1,3 +1,8 @@
+// variables
+
+$color-ffgreen: #6ea250;
+
+// variables
 // global
 
 h1,h2,h3 {
@@ -23,14 +28,14 @@ h3 {
 // header
 
 header {
-  background-color: #6ea250;
+  background-color: $color-ffgreen;
   padding: 12px;
   h1 {
     color: #ffffff;
     margin-right: auto;
   }
   .btn-outline-light:hover {
-    color: #6ea250;
+    color: $color-ffgreen;
   }
 }
 
@@ -51,8 +56,3 @@ header {
 }
 
 // teamlist
-// footer
-
-footer {
-  padding-bottom: 24px;
-}
