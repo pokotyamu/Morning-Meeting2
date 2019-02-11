@@ -9,6 +9,7 @@
   <% @performances.each_with_index do |performance, i| %>
     <%= performance.formatted_week %><br />
     <%= f.text_field :value, name: "performance_value[#{i}]", value: performance.value %><br />
+    <%= f.text_area :value, name: "performance_content[#{i}]", value: performance.content %><br />
   <% end %>
 
   <div class="actions">

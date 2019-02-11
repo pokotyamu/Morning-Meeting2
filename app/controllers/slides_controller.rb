@@ -6,9 +6,12 @@ class SlidesController < ApplicationController
   end
 
   def create
+    # TODO: 効率いい方法を考える
     @performances.each_with_index do |performance, i|
-      performance.value = create_params['performance_value']["#{i}"]
-      performance.content = ''
+      performance.update(
+        value: create_params['performance_value']["#{i}"],
+        content: create_params['performance_content']["#{i}"]
+      )
     end
     @target.update(value: create_params['target_value'])
     redirect_to root_url, notice: '保存しました。'
@@ -56,6 +59,6 @@ class SlidesController < ApplicationController
   end
 
   def create_params
-    params.permit(:target_value, performance_value: {})
+    params.permit(:target_value, performance_value: {}, performance_content: {})
   end
 end
