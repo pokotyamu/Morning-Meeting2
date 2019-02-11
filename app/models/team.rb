@@ -12,4 +12,5 @@
 
 class Team < ApplicationRecord
   scope :enabled, -> { where(enabled: true) }
+  scope :disabled, -> { where(enabled: false) }
 end
