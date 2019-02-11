@@ -1,11 +1,31 @@
+// global
+
+h1,h2,h3 {
+  font-weight: 700;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+.btn {
+  border-radius: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// global
 // header
 
 header {
   background-color: #6ea250;
   padding: 12px;
   h1 {
-    font-size: 2rem;
-    font-weight: 700;
     color: #ffffff;
     margin-right: auto;
   }
@@ -19,11 +39,20 @@ header {
 
 .teamlist-item {
   border: 1px solid;
+  border-bottom: 0px;
   padding: 12px;
   display: flex;
+  &:last-child {
+    border-bottom: 1px solid;
+  }
   h3 {
-    font-size: 1rem;
-    font-weight: 700;
     margin-right: auto;
   }
+}
+
+// teamlist
+// footer
+
+footer {
+  padding-bottom: 24px;
 }
