@@ -30,6 +30,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'factory_bot_rails'
+  gem 'hirb'
+  gem 'hirb-unicode-steakknife', require: 'hirb-unicode'
 end
 
 group :development do
