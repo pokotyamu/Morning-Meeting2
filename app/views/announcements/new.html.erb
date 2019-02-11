@@ -1,0 +1,20 @@
+<h1>全体共有用</h1>
+他に書き込んでいる人の分は消さない用にお願いします。
+<hr>
+
+<%= @announcement.start_on %> 週分のお知らせ
+
+<%= form_with model: @announcement, local: true do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :start_on %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %><br />
+    <%= f.text_area :content, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
