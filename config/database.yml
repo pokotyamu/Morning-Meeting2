@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: morning-meeting2_production
   username: morning-meeting2
   password: <%= ENV['MORNING-MEETING2_DATABASE_PASSWORD'] %>
