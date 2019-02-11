@@ -1,13 +1,16 @@
 # == Schema Information
 #
-# Table name: announcements
+# Table name: targets
 #
 #  id         :integer          not null, primary key
-#  content    :text             not null
 #  start_on   :date             not null
+#  value      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  team_id    :integer          not null
 #
 
-class Announcement < ApplicationRecord
+class Target < ApplicationRecord
+  belongs_to :team
+  has_many :performances
 end
