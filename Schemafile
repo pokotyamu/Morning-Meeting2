@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 create_table "announcements", id: :serial, force: :cascade do |t|
   t.text "content", null: false
+  t.datetime "start_on", null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
 end
