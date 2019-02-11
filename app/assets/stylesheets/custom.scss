@@ -1,8 +1,8 @@
+// header
+
 header {
   background-color: #6ea250;
   padding: 12px;
-  display: flex;
-  align-items: center;
   h1 {
     font-size: 2rem;
     font-weight: 700;
@@ -11,5 +11,19 @@ header {
   }
   .btn-outline-light:hover {
     color: #6ea250;
+  }
+}
+
+// header
+// teamlist
+
+.teamlist-item {
+  border: 1px solid;
+  padding: 12px;
+  display: flex;
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: auto;
   }
 }
