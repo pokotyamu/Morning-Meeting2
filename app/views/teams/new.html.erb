@@ -1,0 +1,17 @@
+<h1>チーム作成</h1>
+
+<%= form_with model: Team.new, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :order %><br />
+    <%= f.number_field :order %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "作成" %>
+  </div>
+<% end %>
