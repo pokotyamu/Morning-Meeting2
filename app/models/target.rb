@@ -3,7 +3,7 @@
 # Table name: targets
 #
 #  id         :integer          not null, primary key
-#  start_on   :datetime         not null
+#  start_on   :date             not null
 #  value      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
