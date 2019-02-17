@@ -1,19 +1,19 @@
 class SlidesController < ApplicationController
-  before_action :set_target, only: [:edit, :create]
-  before_action :set_performances, only: [:edit, :create]
+  before_action :set_target, only: [:edit, :update]
+  before_action :set_performances, only: [:edit]
 
   def edit
   end
 
-  def create
+  def update
     # TODO: 効率いい方法を考える
-    @performances.each_with_index do |performance, i|
-      performance.update(
-        value: create_params['performance_value']["#{i}"],
-        content: create_params['performance_content']["#{i}"]
+    performance_params.each do |performance|
+      Performance.find(performance[0]).update(
+        value: performance[1]['value'],
+        content: performance[1]['content']
       )
     end
-    @target.update(value: create_params['target_value'])
+    @target.update(value: target_params['value'])
     redirect_to root_url, notice: '保存しました。'
   end
 
@@ -24,18 +24,18 @@ class SlidesController < ApplicationController
   end
 
   def set_performances
-    if @target.persisted?
-      @performances = @target.performances
-    else
+    if @target.performances.empty?
       beginning_of_business_day = beginning_of_business_day(start_on)
       @performances = Array.new(business_weeks(start_on)) do |n|
-        @target.performances.build(start_on: beginning_of_business_day + 7.days * n)
+        @target.performances.create(start_on: beginning_of_business_day + 7.days * n, content: '')
       end
+    else
+      @performances = @target.performances.order(:start_on)
     end
   end
 
   def set_target
-    @target = Target.find_or_initialize_by(
+    @target = Target.find_or_create_by(
       team_id: params[:id],
       start_on: start_on
     )
@@ -58,7 +58,11 @@ class SlidesController < ApplicationController
     start_on.cwday == 1 ? start_on : start_on.next_week.beginning_of_week
   end
 
-  def create_params
-    params.permit(:target_value, performance_value: {}, performance_content: {})
+  def target_params
+    params.require(:target).permit(:value)
+  end
+
+  def performance_params
+    params.require(:performance).permit!
   end
 end

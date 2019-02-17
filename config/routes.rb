@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :teams, only: [:new, :create, :edit, :update, :destroy] do
     member do
       get 'slides/edit'
-      post 'slides', controller: 'slides', action: :create
+      patch 'slides', controller: 'slides', action: :update
     end
   end
   resources :announcements, only: [:new, :create, :update]
