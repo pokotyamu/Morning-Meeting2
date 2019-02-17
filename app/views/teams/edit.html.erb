@@ -24,6 +24,12 @@
       <%= f.number_field :order %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :enabled %><br />
+      <%= f.radio_button :enabled, true %>表示
+      <%= f.radio_button :enabled, false %>非表示
+    </div>
+
     <div class="actions">
       <%= f.submit "更新" %>
     </div>
