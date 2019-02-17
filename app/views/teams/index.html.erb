@@ -14,7 +14,7 @@
   <div class="container mt-3">
     <div class="row">
       <div class="col-6">
-        <h2>チーム一覧</h2>
+        <h3>チーム一覧</h3>
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>">
             <div class="container">
@@ -25,7 +25,7 @@
         <section class="teamlist">
           <% @enabled_teams.each do |team| %>
             <div class="teamlist-item">
-              <h3 class="mb-0"><%= link_to team.name, slides_edit_team_path(team) =%></h3>
+              <h4 class="mb-0"><%= link_to team.name, slides_edit_team_path(team) =%></h4>
               <small>最終編集: 2019/02/10 19:33</small>
               <%= link_to edit_team_path(team), class: 'text-dark' do %>
                 <i class="fas fa-cog ml-2"></i>
@@ -33,7 +33,7 @@
             </div>
           <% end %>
           <div class="teamlist-item">
-            <h3 class="mb-0"><%= link_to '全体共有', new_announcement_path %></h3>
+            <h4 class="mb-0"><%= link_to '全体共有', new_announcement_path %></h4>
             <small>最終編集: 2019/02/10 19:33</small>
             <i class="fas fa-cog ml-2"></i>
           </div>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- なければ heading ごと非表示に -->
-        <h2 class="mt-4">非表示チーム一覧</h2>
+        <h3 class="mt-4">非表示チーム一覧</h3>
         <section class="teamlist">
           <% @disabled_teams.each do |team| %>
             <div class="teamlist-item">
@@ -60,7 +60,7 @@
         </section>
       </div>
       <div class="col-6">
-        <h2>朝会プレビュー</h2>
+        <h3>朝会プレビュー</h3>
       </div>
 
     </div>
