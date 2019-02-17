@@ -1,6 +1,6 @@
 <h1><%= @target.team.name %> <%= @target.start_on.strftime("%Y/%m") %></h1>
 
-<%= form_with url: slides_team_path(@target.team),local: true do |f| %>
+<%= form_with url: slides_team_path(@target.team), method: :patch, local: true do |f| %>
   <div class="form-group">
     <%= f.label :value %><br />
     <%= f.text_field :value, name: "target[value]", value: @target.value, autofocus: true %>

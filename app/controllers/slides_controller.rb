@@ -1,11 +1,11 @@
 class SlidesController < ApplicationController
-  before_action :set_target, only: [:edit, :create]
-  before_action :set_performances, only: [:edit, :create]
+  before_action :set_target, only: [:edit, :update]
+  before_action :set_performances, only: [:edit, :update]
 
   def edit
   end
 
-  def create
+  def update
     # TODO: 効率いい方法を考える
     performance_params.each do |performance|
       Performance.find(performance[0]).update(
