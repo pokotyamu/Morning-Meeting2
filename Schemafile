@@ -12,13 +12,13 @@ create_table "performances", id: :serial, force: :cascade do |t|
   t.datetime "updated_at", null: false
   t.date "start_on", null: false
   t.integer "value", default: 0, null: false
-  t.text "content", null: false
+  t.text "content"
   t.integer "target_id", null: false
 end
 
 create_table "targets", id: :serial, force: :cascade do |t|
   t.date "start_on", null: false
-  t.integer "value", null: false
+  t.integer "value", default: 0, null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
   t.integer "team_id", null: false

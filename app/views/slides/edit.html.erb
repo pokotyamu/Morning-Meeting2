@@ -3,13 +3,13 @@
 <%= form_with url: slides_team_path(@target.team),local: true do |f| %>
   <div class="form-group">
     <%= f.label :value %><br />
-    <%= f.text_field :value, name: "target_value", value: @target.value, autofocus: true %>
+    <%= f.text_field :value, name: "target[value]", value: @target.value, autofocus: true %>
   </div>
 
-  <% @performances.each_with_index do |performance, i| %>
+  <% @performances.each do |performance| %>
     <%= performance.formatted_week %><br />
-    <%= f.text_field :value, name: "performance_value[#{i}]", value: performance.value %><br />
-    <%= f.text_area :value, name: "performance_content[#{i}]", value: performance.content %><br />
+    <%= f.text_field :value, name: "performance[#{performance.id}][value]", value: performance.value %><br />
+    <%= f.text_area :value, name: "performance[#{performance.id}][content]", value: performance.content %><br />
   <% end %>
 
   <div class="actions">
