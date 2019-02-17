@@ -1,6 +1,6 @@
 class SlidesController < ApplicationController
   before_action :set_target, only: [:edit, :update]
-  before_action :set_performances, only: [:edit, :update]
+  before_action :set_performances, only: [:edit]
 
   def edit
   end
