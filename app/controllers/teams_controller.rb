@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    teams = Team.all
+    teams = Team.order(:order)
     @enabled_teams = teams.enabled
     @disabled_teams = teams.disabled
   end
@@ -35,6 +35,6 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :order)
+    params.require(:team).permit(:name, :order, :enabled)
   end
 end
