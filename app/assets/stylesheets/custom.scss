@@ -5,16 +5,19 @@ $color-ffgreen: #6ea250;
 // variables
 // global
 
-h1,h2,h3 {
+h1,h2,h3,h4 {
   font-weight: 700;
 }
 h1 {
   font-size: 2rem;
 }
 h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 h3 {
+  font-size: 1.5rem;
+}
+h4 {
   font-size: 1rem;
 }
 
@@ -50,7 +53,7 @@ header {
   &:last-child {
     border-bottom: 1px solid;
   }
-  h3 {
+  h4 {
     margin-right: auto;
   }
 }
