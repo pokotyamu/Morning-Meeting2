@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'teams#index'
 
-  resources :teams, only: [:new, :create] do
+  resources :teams, only: [:new, :create, :edit, :update, :destroy] do
     member do
       get 'slides/edit'
       post 'slides', controller: 'slides', action: :create

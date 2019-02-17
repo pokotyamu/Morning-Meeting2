@@ -27,7 +27,9 @@
             <div class="teamlist-item">
               <h3 class="mb-0"><%= link_to team.name, slides_edit_team_path(team) =%></h3>
               <small>最終編集: 2019/02/10 19:33</small>
-              <i class="fas fa-cog ml-2"></i>
+              <%= link_to edit_team_path(team), class: 'text-dark' do %>
+                <i class="fas fa-cog ml-2"></i>
+              <% end %>
             </div>
           <% end %>
           <div class="teamlist-item">
