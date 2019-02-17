@@ -28,7 +28,8 @@
         <% @performances.each do |performance| %>
         <div class="form-group mt-4">
           <label><%= performance.formatted_week %></label>
-          <%= f.text_field :value, name: "performance[#{performance.id}][value]", value: performance.value, class: "form-control" %>
+          <%= f.hidden_field "performance[][id]", value: performance.id %>
+          <%= f.text_field "performance[][value]", value: performance.value, class: "form-control" %>
         </div>
         <% end %>
       </div>
@@ -58,7 +59,8 @@
               role="tabpanel"
               aria-labelledby="pills-home-tab"
             >
-            <%= f.text_area :value, name: "performance[#{performance.id}][content]", value: performance.content, class: "form-control", placeholder: "マークダウンで記入してください" %>
+            <%= f.hidden_field "performance[][id]", value: performance.id %>
+            <%= f.text_area "performance[][content]", value: performance.content, class: "form-control", placeholder: "マークダウンで記入してください" %>
             </div>
           <% end %>
         </div>

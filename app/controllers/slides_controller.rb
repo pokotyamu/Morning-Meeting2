@@ -7,10 +7,11 @@ class SlidesController < ApplicationController
 
   def update
     # TODO: 効率いい方法を考える
+    binding.pry
     performance_params.each do |performance|
-      Performance.find(performance[0]).update(
-        value: performance[1]['value'],
-        content: performance[1]['content']
+      Performance.find(performance['id']).update(
+        value: performance['value'],
+        content: performance['content']
       )
     end
     @target.update(value: target_params['value'])
@@ -63,6 +64,6 @@ class SlidesController < ApplicationController
   end
 
   def performance_params
-    params.require(:performance).permit!
+    params.require(:performance)
   end
 end
