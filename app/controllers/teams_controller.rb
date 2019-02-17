@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    teams = Team.all
+    teams = Team.order(:order)
     @enabled_teams = teams.enabled
     @disabled_teams = teams.disabled
   end
