@@ -1,6 +1,6 @@
 class SlidesController < ApplicationController
   before_action :set_monthly_target, only: [:edit, :update]
-  before_action :set_performances, only: [:edit]
+  before_action :set_weekly_performances, only: [:edit]
 
   def edit
   end
@@ -23,14 +23,14 @@ class SlidesController < ApplicationController
     Date.today.beginning_of_month
   end
 
-  def set_performances
-    if @monthly_target.performances.empty?
+  def set_weekly_performances
+    if @monthly_target.weekly_performances.empty?
       beginning_of_business_day = beginning_of_business_day(start_on)
-      @performances = Array.new(business_weeks(start_on)) do |n|
-        @monthly_target.performances.create(start_on: beginning_of_business_day + 7.days * n, content: '')
+      @weekly_performances = Array.new(business_weeks(start_on)) do |n|
+        @monthly_target.weekly_performances.create(start_on: beginning_of_business_day + 7.days * n, content: '')
       end
     else
-      @performances = @monthly_target.performances.order(:start_on)
+      @weekly_performances = @monthly_target.weekly_performances.order(:start_on)
     end
   end
 

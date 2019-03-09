@@ -11,7 +11,7 @@
 #  monthly_target_id :integer          not null
 #
 
-class Performance < ApplicationRecord
+class WeeklyPerformance < ApplicationRecord
   belongs_to :monthly_target
 
   def formatted_week
