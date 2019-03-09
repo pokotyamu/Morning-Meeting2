@@ -14,7 +14,12 @@ class SlidesController < ApplicationController
       )
     end
     @monthly_target.update(value: monthly_target_params['value'])
-    redirect_to root_url, notice: '保存しました。'
+    redirect_to slide_team_url, notice: '保存しました。'
+  end
+
+  def show
+    team = Team.find(params[:id])
+    @chart = GraphBuilderService.new(team, start_on).build
   end
 
   private

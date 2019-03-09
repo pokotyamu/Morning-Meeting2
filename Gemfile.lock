@@ -64,6 +64,7 @@ GEM
     ffi (1.10.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hash-deep-merge (0.1.1)
     hirb (0.7.3)
     hirb-unicode-steakknife (0.0.8)
       hirb (~> 0.5)
@@ -73,6 +74,8 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    lazy_high_charts (1.5.8)
+      hash-deep-merge
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -213,6 +216,7 @@ DEPENDENCIES
   hirb
   hirb-unicode-steakknife
   jbuilder
+  lazy_high_charts
   listen (>= 3.0.5, < 3.2)
   pg
   pry-byebug
@@ -235,4 +239,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

@@ -23,6 +23,7 @@ gem 'jbuilder'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'lazy_high_charts'
 gem 'ridgepole'
 gem 'ridgepole-rails'
 
