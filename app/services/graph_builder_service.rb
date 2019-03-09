@@ -2,19 +2,17 @@ class GraphBuilderService
   def initialize(team, date)
     @team = team
     @start_on = date.beginning_of_month
+    @monthly_target = team.monthly_targets.find_by(start_on: start_on)
   end
 
   def build
-    monthly_target = team.monthly_targets.find_by(start_on: start_on)
-    series_data = series_data(monthly_target)
-
     LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "売上実績")
-      f.xAxis(categories: categories(monthly_target))
-      series_data.each_with_index do |data, index|
-        f.series(yAxis: 0, stacking: 'normal', name: index.to_s, data: data )
+      f.xAxis(categories: categories)
+      series_performance_values.each_with_index do |value, index|
+        f.series(yAxis: 0, stacking: 'normal', name: index.to_s, data: value )
       end
-      f.series(name: "目標", data: [[0, 1000], [3, 1000]], type: 'line')
+      f.series(name: "目標", data: series_target_values, type: 'line')
 
       f.yAxis [
         {title: {text: "GDP in Billions", margin: 70} },
@@ -28,17 +26,23 @@ class GraphBuilderService
 
   private
 
-  attr_reader :team, :start_on
+  attr_reader :team, :start_on, :monthly_target
 
-  def categories(monthly_target)
+  def categories
     monthly_target.weekly_performances.map(&:formatted_week)
   end
 
-  def series_data(monthly_target)
-    size = monthly_target.weekly_performances.size
-
+  def series_performance_values
     monthly_target.weekly_performances.map.with_index do |performance, index|
-      Array.new(index) + Array.new(size - index, performance.value)
+      Array.new(index) + Array.new(weekly_performances_size - index, performance.value)
     end
+  end
+
+  def series_target_values
+    [[0, monthly_target.value], [weekly_performances_size - 1, monthly_target.value]]
+  end
+
+  def weekly_performances_size
+    @weekly_performances_size ||= monthly_target.weekly_performances.size
   end
 end
