@@ -6,14 +6,14 @@ class GraphBuilderService
 
   def build
     monthly_target = team.monthly_targets.find_by(start_on: start_on)
+    series_data = series_data(monthly_target)
 
     LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "売上実績")
       f.xAxis(categories: categories(monthly_target))
-      f.series(yAxis: 0, stacking: 'normal', name: "1", data: [100, 100, 100, 100] )
-      f.series(yAxis: 0, stacking: 'normal', name: "2", data: [nil, 100, 100, 100] )
-      f.series(yAxis: 0, stacking: 'normal', name: "3", data: [nil, nil, 100, 100] )
-      f.series(yAxis: 0, stacking: 'normal', name: "4", data: [nil, nil, nil, 100] )
+      series_data.each_with_index do |data, index|
+        f.series(yAxis: 0, stacking: 'normal', name: index.to_s, data: data )
+      end
       f.series(name: "目標", data: [[0, 1000], [3, 1000]], type: 'line')
 
       f.yAxis [
@@ -32,5 +32,13 @@ class GraphBuilderService
 
   def categories(monthly_target)
     monthly_target.weekly_performances.map(&:formatted_week)
+  end
+
+  def series_data(monthly_target)
+    size = monthly_target.weekly_performances.size
+
+    monthly_target.weekly_performances.map.with_index do |performance, index|
+      Array.new(index) + Array.new(size - index, performance.value)
+    end
   end
 end
