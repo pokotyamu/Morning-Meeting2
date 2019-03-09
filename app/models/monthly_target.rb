@@ -10,7 +10,7 @@
 #  team_id    :integer          not null
 #
 
-class Target < ApplicationRecord
+class MonthlyTarget < ApplicationRecord
   belongs_to :team
   has_many :performances
 end

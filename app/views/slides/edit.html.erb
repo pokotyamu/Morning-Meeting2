@@ -13,17 +13,17 @@
 <main>
   <div class="container mt-3">
 
-    <%= form_with url: slides_team_path(@target.team), method: :patch, local: true, class: 'row' do |f| %>
+    <%= form_with url: slides_team_path(@monthly_target.team), method: :patch, local: true, class: 'row' do |f| %>
       <div class="col-12 mb-4">
         <h2>
-          <%= @target.team.name %>
-          <%= @target.start_on.strftime("%Y/%m") %>
+          <%= @monthly_target.team.name %>
+          <%= @monthly_target.start_on.strftime("%Y/%m") %>
         </h2>
       </div>
       <div class="col-12 col-md-4">
         <div class="form-group">
           <%= f.label :売上目標 %>
-          <%= f.text_field :value, name: "target[value]", value: @target.value, autofocus: true, class: "form-control" %>
+          <%= f.text_field :value, name: "monthly_target[value]", value: @monthly_target.value, autofocus: true, class: "form-control" %>
         </div>
         <% @performances.each do |performance| %>
         <div class="form-group mt-4">
