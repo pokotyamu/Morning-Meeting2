@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get 'slides/edit'
       patch 'slides', controller: 'slides', action: :update
+      get 'slide', controller: 'slides', action: :show
     end
   end
   resources :announcements, only: [:new, :create, :update]

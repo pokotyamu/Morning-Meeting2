@@ -17,6 +17,45 @@ class SlidesController < ApplicationController
     redirect_to root_url, notice: '保存しました。'
   end
 
+  def show
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(text: "Population vs GDP For 5 Big Countries [2009]")
+      f.xAxis(categories: ["3/04 から 03/10", "03/11 から 03/17", "03/18 から 03/24", "03/25 から 03/31"])
+      f.series(yAxis: 0, stacking: 'normal', name: "1", data: [100, 100, 100, 100] )
+      f.series(yAxis: 0, stacking: 'normal', name: "2", data: [nil, 100, 100, 100] )
+      f.series(yAxis: 0, stacking: 'normal', name: "3", data: [nil, nil, 100, 100] )
+      f.series(yAxis: 0, stacking: 'normal', name: "4", data: [nil, nil, nil, 100] )
+      f.series(name: "目標", data: [[0, 1000], [3, 1000]], type: 'line')
+
+      f.yAxis [
+        {title: {text: "GDP in Billions", margin: 70} },
+        {title: {text: "Population in Millions"}, opposite: true},
+      ]
+
+      f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+      f.chart({defaultSeriesType: "column"})
+    end
+
+    @chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
+      f.global(useUTC: false)
+      f.chart(
+        backgroundColor: {
+          linearGradient: [0, 0, 500, 500],
+          stops: [
+            [0, "rgb(255, 255, 255)"],
+            [1, "rgb(240, 240, 255)"]
+          ]
+        },
+        borderWidth: 2,
+        plotBackgroundColor: "rgba(255, 255, 255, .9)",
+        plotShadow: true,
+        plotBorderWidth: 1
+      )
+      f.lang(thousandsSep: ",")
+      f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+    end
+  end
+
   private
 
   def start_on
