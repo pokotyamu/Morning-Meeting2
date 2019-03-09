@@ -9,16 +9,10 @@ class GraphBuilderService
     LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "売上実績")
       f.xAxis(categories: categories)
-      series_performance_values.each_with_index do |value, index|
-        f.series(yAxis: 0, stacking: 'normal', name: index.to_s, data: value )
+      series_performance_values.each.with_index(1) do |value, index|
+        f.series(yAxis: 0, stacking: 'normal', name: "#{index}週目", data: value )
       end
       f.series(name: "目標", data: series_target_values, type: 'line')
-
-      f.yAxis [
-        {title: {text: "GDP in Billions", margin: 70} },
-        {title: {text: "Population in Millions"}, opposite: true},
-      ]
-
       f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
       f.chart({defaultSeriesType: "column"})
     end
