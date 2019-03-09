@@ -25,16 +25,16 @@
           <%= f.label :売上目標 %>
           <%= f.text_field :value, name: "monthly_target[value]", value: @monthly_target.value, autofocus: true, class: "form-control" %>
         </div>
-        <% @weekly_performances.each do |performance| %>
+        <% @weekly_performances.each do |weekly_performance| %>
         <div class="form-group mt-4">
-          <label><%= performance.formatted_week %></label>
-          <%= f.text_field :value, name: "performance[#{performance.id}][value]", value: performance.value, class: "form-control" %>
+          <label><%= weekly_performance.formatted_week %></label>
+          <%= f.text_field :value, name: "weekly_performance[#{weekly_performance.id}][value]", value: weekly_performance.value, class: "form-control" %>
         </div>
         <% end %>
       </div>
       <div class="col-12 col-md-8">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
-          <% @weekly_performances.each_with_index do |performance, i| %>
+          <% @weekly_performances.each_with_index do |weekly_performance, i| %>
             <li class="nav-item">
               <a
                 class="nav-link <% if i == 0 %>active<% end %>"
@@ -45,20 +45,20 @@
                 aria-controls="pills-<%= i %>"
                 aria-selected="<% if i == 0 %>true<% else %>false<% end %>"
               >
-                <%= performance.formatted_week %>
+                <%= weekly_performance.formatted_week %>
               </a>
             </li>
           <% end %>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-          <% @weekly_performances.each_with_index do |performance, i| %>
+          <% @weekly_performances.each_with_index do |weekly_performance, i| %>
             <div
               class="tab-pane fade<% if i == 0 %> show active<% end %>"
               id="pills-<%= i %>"
               role="tabpanel"
               aria-labelledby="pills-home-tab"
             >
-            <%= f.text_area :value, name: "performance[#{performance.id}][content]", value: performance.content, class: "form-control", placeholder: "マークダウンで記入してください" %>
+            <%= f.text_area :value, name: "weekly_performance[#{weekly_performance.id}][content]", value: weekly_performance.content, class: "form-control", placeholder: "マークダウンで記入してください" %>
             </div>
           <% end %>
         </div>

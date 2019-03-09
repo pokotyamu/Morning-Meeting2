@@ -7,10 +7,10 @@ class SlidesController < ApplicationController
 
   def update
     # TODO: 効率いい方法を考える
-    performance_params.each do |performance|
-      Performance.find(performance[0]).update(
-        value: performance[1]['value'],
-        content: performance[1]['content']
+    weekly_performance_params.each do |weekly_performance|
+      WeeklyPerformance.find(weekly_performance[0]).update(
+        value: weekly_performance[1]['value'],
+        content: weekly_performance[1]['content']
       )
     end
     @monthly_target.update(value: monthly_target_params['value'])
@@ -35,7 +35,7 @@ class SlidesController < ApplicationController
   end
 
   def set_monthly_target
-    @monthly_target = Monthly_Target.find_or_create_by(
+    @monthly_target = MonthlyTarget.find_or_create_by(
       team_id: params[:id],
       start_on: start_on
     )
@@ -62,7 +62,7 @@ class SlidesController < ApplicationController
     params.require(:monthly_target).permit(:value)
   end
 
-  def performance_params
-    params.require(:performance).permit!
+  def weekly_performance_params
+    params.require(:weekly_performance).permit!
   end
 end
