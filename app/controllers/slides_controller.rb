@@ -1,19 +1,19 @@
 class SlidesController < ApplicationController
-  before_action :set_target, only: [:edit, :update]
-  before_action :set_performances, only: [:edit]
+  before_action :set_monthly_target, only: [:edit, :update]
+  before_action :set_weekly_performances, only: [:edit]
 
   def edit
   end
 
   def update
     # TODO: 効率いい方法を考える
-    performance_params.each do |performance|
-      Performance.find(performance[0]).update(
-        value: performance[1]['value'],
-        content: performance[1]['content']
+    weekly_performance_params.each do |weekly_performance|
+      WeeklyPerformance.find(weekly_performance[0]).update(
+        value: weekly_performance[1]['value'],
+        content: weekly_performance[1]['content']
       )
     end
-    @target.update(value: target_params['value'])
+    @monthly_target.update(value: monthly_target_params['value'])
     redirect_to root_url, notice: '保存しました。'
   end
 
@@ -23,19 +23,19 @@ class SlidesController < ApplicationController
     Date.today.beginning_of_month
   end
 
-  def set_performances
-    if @target.performances.empty?
+  def set_weekly_performances
+    if @monthly_target.weekly_performances.empty?
       beginning_of_business_day = beginning_of_business_day(start_on)
-      @performances = Array.new(business_weeks(start_on)) do |n|
-        @target.performances.create(start_on: beginning_of_business_day + 7.days * n, content: '')
+      @weekly_performances = Array.new(business_weeks(start_on)) do |n|
+        @monthly_target.weekly_performances.create(start_on: beginning_of_business_day + 7.days * n, content: '')
       end
     else
-      @performances = @target.performances.order(:start_on)
+      @weekly_performances = @monthly_target.weekly_performances.order(:start_on)
     end
   end
 
-  def set_target
-    @target = Target.find_or_create_by(
+  def set_monthly_target
+    @monthly_target = MonthlyTarget.find_or_create_by(
       team_id: params[:id],
       start_on: start_on
     )
@@ -58,11 +58,11 @@ class SlidesController < ApplicationController
     start_on.cwday == 1 ? start_on : start_on.next_week.beginning_of_week
   end
 
-  def target_params
-    params.require(:target).permit(:value)
+  def monthly_target_params
+    params.require(:monthly_target).permit(:value)
   end
 
-  def performance_params
-    params.require(:performance).permit!
+  def weekly_performance_params
+    params.require(:weekly_performance).permit!
   end
 end

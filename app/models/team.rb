@@ -11,7 +11,7 @@
 #
 
 class Team < ApplicationRecord
-  has_many :targets, dependent: :destroy
+  has_many :monthly_targets, dependent: :destroy
 
   scope :enabled, -> { where(enabled: true) }
   scope :disabled, -> { where(enabled: false) }
